@@ -5,18 +5,36 @@ using UnityEngine;
 public class CarMove : MonoBehaviour
 {
     public AxleInfo[] carAxis = new AxleInfo[2];
+    public WheelCollider[] wheelColliders;
     public float carSpeed;
     public float steerAngle;//угол поворота колес
+    public Transform centerOfMass;
+    [Range(0,1)]//диапазон для steerHelp
+    public float steerHelpValue = 0;
+    bool onGround;
+
+    float lastYrotation;
 
     float horInput;
     float verInput;
+
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = centerOfMass.localPosition;
+    }
 
     private void FixedUpdate()
     {
         horInput = Input.GetAxis("Horizontal");//принимает нажатие влево-вправо
         verInput = Input.GetAxis("Vertical");//принимает нажатие w-s возвращает -1 или 1
 
+        CheckOnGround();
+
         Accelerate();
+        SteerHelpAssist();
     }
 
     void Accelerate()
@@ -46,6 +64,32 @@ public class CarMove : MonoBehaviour
 
         visWheel.position = position;
         visWheel.rotation = rotatation;
+    }
+
+    void SteerHelpAssist()
+    {
+        //проверяем нахождение колес на земле
+        if (!onGround)
+            return;
+        //проверка от внезапного доворачивания от 360 к 0
+        if (Mathf.Abs(transform.rotation.eulerAngles.y - lastYrotation) < 10f)
+        {
+            float turnAdjust = (transform.rotation.eulerAngles.y - lastYrotation) * steerHelpValue;
+            Quaternion rotateHelp = Quaternion.AngleAxis(turnAdjust, Vector3.up);//поворачиваем машину вправо-влево по up
+            rb.velocity = rotateHelp * rb.velocity;
+        }
+        lastYrotation = transform.rotation.eulerAngles.y;
+
+    }
+
+    void CheckOnGround()
+    {
+        onGround = true;
+        foreach (WheelCollider wheelCol in wheelColliders)
+        {
+            if (!wheelCol.isGrounded)
+                onGround = false;
+        }
     }
 }
 

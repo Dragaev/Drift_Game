@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{E2722FEF-5964-C0B2-0D5B-67F8B2445739}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CarMove.cs">
     <Files>
-      <File FileName="Assets/Scripts/LookAtCar.cs" Line="12" Column="34" />
-      <File FileName="Assets/Scripts/CarMove.cs" Line="7" Column="5" />
+      <File FileName="Assets/Scripts/CarMove.cs" Line="11" Column="17" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="24" Column="137" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,7 +20,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ee3a4408-0744-4d93-bd49-9bd1d59c94e8" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a050489d-8ee1-457e-bec3-58118a6d510b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
