@@ -17,6 +17,11 @@ public class CarMove : MonoBehaviour
 
     float lastYrotation;
 
+    [Header("For Smoke From Tires")]
+    public float minSpeedForSmoke;
+    public float minAngleForSmoke;
+    public ParticleSystem[] tireSmokeEffects;
+
     float horInput;
     float verInput;
 
@@ -37,6 +42,8 @@ public class CarMove : MonoBehaviour
 
         Accelerate();
         ManageNitro();
+        ManageHandBrake();
+        EmitSmokeFromTires();
         SteerHelpAssist();
     }
 
@@ -110,6 +117,51 @@ public class CarMove : MonoBehaviour
                 nitroEffects.SetActive(false);
         }
             
+    }
+
+    void ManageHandBrake()
+    {
+        foreach(AxleInfo axle in carAxis)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                //у wheelCollider есть метод торможения brakeTorque
+                axle.rightWheel.brakeTorque = 50000;
+                axle.leftWheel.brakeTorque = 50000;
+            }
+            else
+            {
+                axle.rightWheel.brakeTorque = 0;
+                axle.leftWheel.brakeTorque = 0;
+            }
+        }
+    }
+    void EmitSmokeFromTires()
+    {
+        //если хватает скорости
+        if (rb.velocity.magnitude > minSpeedForSmoke)
+        {
+            //если направление скорости отличается от того куда смотрит перед,тогда дымиm
+            float angle = Quaternion.Angle(Quaternion.LookRotation(rb.velocity, Vector3.up), Quaternion.LookRotation(transform.forward, Vector3.up));
+            if (angle > minAngleForSmoke && angle<160 && onGround)
+                SwitchSmokeParticles(true);
+                else
+                    SwitchSmokeParticles(false);
+        }
+        else
+            SwitchSmokeParticles(false);
+
+    }
+
+    void SwitchSmokeParticles(bool _enable)
+    {
+        foreach(ParticleSystem ps in tireSmokeEffects)
+        {
+            //в каждую particle system вставляем нашу булеву переменную как параметр для эмиссии или неэмиссии частиц
+            ParticleSystem.EmissionModule psEm = ps.emission;
+            psEm.enabled = _enable;
+        }
+
     }
 }
 
