@@ -11,7 +11,8 @@ public class CameraController : MonoBehaviour
     Quaternion startRotation;
     Vector3 offset;
 
-    private void Start()
+    //раньше вместо  Awake был Start, но при смене камеры у нас боковая камера не успевала просчитывать свои координаты
+    private void Awake()
     {
         offset = transform.position - playerTarget.position;
         startRotation = transform.rotation;
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         //линейная интерполяция
-        transform.position =Vector3.Lerp(transform.position, playerTarget.position + transform.rotation*offset,moveSpeed*Time.fixedDeltaTime);
+        transform.position =Vector3.Lerp(transform.position, playerTarget.position + playerTarget.rotation*offset,moveSpeed*Time.fixedDeltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, playerTarget.rotation * startRotation,rotationSpeed*Time.fixedDeltaTime);
     }
 }

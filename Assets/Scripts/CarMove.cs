@@ -12,6 +12,8 @@ public class CarMove : MonoBehaviour
     [Range(0,1)]//диапазон для steerHelp
     public float steerHelpValue = 0;
     bool onGround;
+    public float nitroPower;
+    public GameObject nitroEffects;
 
     float lastYrotation;
 
@@ -34,6 +36,7 @@ public class CarMove : MonoBehaviour
         CheckOnGround();
 
         Accelerate();
+        ManageNitro();
         SteerHelpAssist();
     }
 
@@ -90,6 +93,23 @@ public class CarMove : MonoBehaviour
             if (!wheelCol.isGrounded)
                 onGround = false;
         }
+    }
+
+    void ManageNitro()
+    {
+        //verInput- смещение по горизонатльной оси, нужен, чтобы нитро срабатывало только когда жмем клавишу вперед
+        if (Input.GetKey(KeyCode.LeftShift) && verInput > 0.01f)
+        {
+            rb.AddForce(transform.forward * nitroPower);
+            nitroEffects.SetActive(true);
+        }
+        else
+        {
+            //если эффект нитро активен-activeSelf
+            if (nitroEffects.activeSelf)
+                nitroEffects.SetActive(false);
+        }
+            
     }
 }
 
