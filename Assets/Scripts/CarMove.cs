@@ -14,6 +14,8 @@ public class CarMove : MonoBehaviour
     bool onGround;
     public float nitroPower;
     public GameObject nitroEffects;
+    public Transform helm;//руль
+    Quaternion startHelmRotation;
 
     float lastYrotation;
 
@@ -31,6 +33,7 @@ public class CarMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
+        startHelmRotation = helm.localRotation;//поскольку руль дочерний по отношению к авто, задаем нач вращ "локальным" поворотом
     }
 
     private void FixedUpdate()
@@ -64,6 +67,8 @@ public class CarMove : MonoBehaviour
             VisualWheelsToColliders(axle.rightWheel, axle.visRightWheel);
             VisualWheelsToColliders(axle.leftWheel, axle.visLeftWheel);
         }
+        //-1 нужен, чтобы руль вращался в ту же сторону, куда вращаем)))
+        helm.localRotation = startHelmRotation * Quaternion.Euler(-1*Vector3.forward * 180 * horInput);
     }
     void VisualWheelsToColliders(WheelCollider col,Transform visWheel)
     {
