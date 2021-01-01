@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{E2722FEF-5964-C0B2-0D5B-67F8B2445739}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CarAnimation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
     <Files>
-      <File FileName="Assets/Scripts/CarMove.cs" Line="33" Column="6" />
-      <File FileName="Assets/Scripts/CameraController.cs" />
+      <File FileName="Assets/Scripts/CarMove.cs" Line="36" Column="1" />
       <File FileName="Assets/Scripts/CameraChange.cs" />
-      <File FileName="Assets/Scripts/SceneChanger.cs" Line="8" Column="5" />
-      <File FileName="Assets/Scripts/CarSelection.cs" Line="14" Column="22" />
-      <File FileName="Assets/Scripts/CarAnimation.cs" Line="17" Column="84" />
+      <File FileName="Assets/Scripts/CarSelection.cs" />
+      <File FileName="Assets/Scripts/SaveManager.cs" />
+      <File FileName="Assets/Scripts/CarModel.cs" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="17" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +14,7 @@
           <Node name="Drift_Game" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="CarAnimation.cs" selected="True" />
+                <Node name="CarMove.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -24,7 +24,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="cb0a21df-0b74-4230-92ae-21af3e0bf3ba" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="f2b2a2ac-c9b9-4550-8718-07109fc07389" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

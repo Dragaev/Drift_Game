@@ -9,9 +9,11 @@ public class CarSelection : MonoBehaviour
     [SerializeField] private Button nextButton;
     private int currentCar;
 
-    private void Awake()
+    //it was Awake before SaveManager was made
+    private void Start()
     {
-        SelectCar(0);
+        currentCar = SaveManager.instance.currentCar;
+        SelectCar(currentCar);
     }
     private void SelectCar(int index)
     {
@@ -26,6 +28,9 @@ public class CarSelection : MonoBehaviour
     public void ChangeCar(int change)
     {
         currentCar += change;
+
+        SaveManager.instance.currentCar = currentCar;
+        SaveManager.instance.Save();
         SelectCar(currentCar);
     }
 }
