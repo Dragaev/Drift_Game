@@ -6,15 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Garage.unity
-    guid: 1fdee9e79e9da45aba06d41a1548e493
+    path: Assets/Scenes/DemoScene.unity
+    guid: e2224b88424b4f0469748624439f318e
   - enabled: 1
-    path: Assets/Scenes/StartScene.unity
-    guid: 0e8a0d677c05a4cbda02ec9b22a25d10
-  - enabled: 0
-    path: Assets/Scenes/TestScene.unity
-    guid: ba1936f5ada8c43f1993c4bec605d646
-  - enabled: 1
-    path: Assets/Asset/Scenes/Sprint Track.unity
+    path: Assets/Scenes/Sprint Track.unity
     guid: 46478303f7c601e4e8584cb7f8d31d7f
   m_configObjects: {}
